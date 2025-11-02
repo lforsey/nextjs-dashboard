@@ -14,9 +14,12 @@ const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 export async function fetchRevenue() {
   try {
 
+    console.log('Fetching revenue data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
     const data = await sql<Revenue[]>`SELECT * FROM revenue`;
 
-    console.log(data);
+    console.log('Revenue data fetched:', data);
 
     return data;
   } catch (error) {
